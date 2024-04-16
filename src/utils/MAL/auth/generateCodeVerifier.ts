@@ -10,7 +10,7 @@ export default function generateCodeVerifier(clientId:string, redirectUri:string
         .replace(/=+$/, ""); // Remove any trailing equal signs
 
     // Construct the authorization URL
-    const authUrl = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&code_challenge=${encodeURIComponent(codeChallenge)}&code_challenge_method=S256`;
+    const authUrl = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${clientId}&state=${codeVerifier}&redirect_uri=${encodeURIComponent(redirectUri)}&code_challenge=${encodeURIComponent(codeChallenge)}&code_challenge_method=plain`;
     return {
         authUrl,
         codeVerifier,

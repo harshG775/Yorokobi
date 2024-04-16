@@ -14,7 +14,12 @@ export default async function verifyUserCode(
                 redirect_uri: redirectUri,
                 code_verifier: codeVerifier,
                 code: authorizationCode,
-                // Include the client_secret if required by the API
+            },
+            {
+                headers: {
+                    Authorization: `Basic ${envServer.MAL_CLIENT_SECRET}`,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
             }
         );
         return resp;
