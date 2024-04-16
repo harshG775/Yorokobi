@@ -1,19 +1,17 @@
-import { envClient } from "@/utils/env/envClient";
 import Link from "next/link";
 export default function Home() {
-    console.log(envClient.NEXT_PUBLIC_MAL_BASE_URL);
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div className="grid grid-cols-2 place-content-center gap-4">
                 <Link
-                    className="hover:text-purple-600 text-neutral-400 font-bold"
-                    href="anime"
+                    className="hover:text-indigo-600 text-neutral-400 font-bold"
+                    href="/anime"
                 >
                     Anime
                 </Link>
                 <Link
-                    className="hover:text-blue-600 text-neutral-400 font-bold"
-                    href="manga"
+                    className="hover:text-rose-600 text-neutral-400 font-bold"
+                    href="/manga"
                 >
                     Manga
                 </Link>
