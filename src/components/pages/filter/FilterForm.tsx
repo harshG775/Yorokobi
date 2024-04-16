@@ -1,24 +1,34 @@
+"use client";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+
+// function DropDown(props: { title: string; children: React.ReactNode }) {
+//     const { title, children } = props;
+//     return (
+//         <div>
+//             <button className="[&+div]:focus:block">{title}</button>
+//             <div className="hidden">{children}</div>
+//         </div>
+//     );
+// }
 
 export default function FilterForm() {
     return (
         <div>
-            <Select>
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Theme" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
-                </SelectContent>
-            </Select>
+            {/* <DropDown title="Select">
+                <input type="checkbox" name="" id="" />
+                <input type="checkbox" name="" id="" />
+                <input type="checkbox" name="" id="" />
+            </DropDown> */}
+            <Popover>
+                <PopoverTrigger>Open</PopoverTrigger>
+                <PopoverContent>
+                    Place content for the popover here.
+                </PopoverContent>
+            </Popover>
         </div>
     );
 }
