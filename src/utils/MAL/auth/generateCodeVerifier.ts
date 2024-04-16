@@ -1,5 +1,5 @@
 import crypto from "crypto";
-export default function generateCodeVerifier(clientId: string,redirectUri: string) {
+export default function generateCodeVerifier(clientId:string, redirectUri:string) {
     const codeVerifier = crypto.randomBytes(32).toString("hex");
     const hash = crypto.createHash("sha256");
     hash.update(codeVerifier);

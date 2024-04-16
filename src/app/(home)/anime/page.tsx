@@ -13,7 +13,7 @@ export default async function Anime() {
                 },
             }
         );
-        console.log(data.data[0].node);
+        // console.log(data.data[0].node);
         return (
             <div>
                 <Link target="_blank" className="hover:text-indigo-600" href="/redirect">Login to MAL</Link>
