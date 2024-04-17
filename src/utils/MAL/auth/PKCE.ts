@@ -1,7 +1,12 @@
 import crypto from "crypto";
 import axios from "axios";
-import { envServer } from "@/utils/env/envServer";
+// import { envServer } from "@/utils/env/envServer";
 
+const env = {
+    MAL_CLIENT_ID: "ed8ef1ad28621d8cb142d13b91504b46",
+    MAL_CLIENT_SECRET:
+        "96ab7575268d391653b4d58796d55a560819b366bc5ac22788fc2f4ef848ff24",
+};
 const baseUrl = "https://myanimelist.net/v1/oauth2";
 const redirectUri = "http://localhost:4000/verify";
 
@@ -25,37 +30,35 @@ export function generateCodeVerifier() {
         .replace(/\//g, "_")
         .replace(/=/g, "");
 
-    const authUrl = `${baseUrl}/authorize?response_type=code&client_id=${envServer.MAL_CLIENT_ID}&state=${codeVerifier}&redirect_uri=${redirectUri}&code_challenge=${pkce_verifier}&code_challenge_method=plain`;
+    const authUrl = `${baseUrl}/authorize?response_type=code&client_id=${env.MAL_CLIENT_ID}&state=${codeVerifier}&redirect_uri=${redirectUri}&code_challenge=${pkce_verifier}&code_challenge_method=plain`;
     return {
         authUrl,
     };
 }
 
 /* verify user */
-export async function verifyUserCode(pkce_verifier: string, urlCode: string) {
+export async function verifyUserCode(pkceVerifier: string, urlCode: string) {
     try {
-        const resp = await axios.post(
-            `${baseUrl}/token`,
-            new URLSearchParams({
-                client_id: envServer.MAL_CLIENT_ID,
-                code: urlCode,
-                code_verifier: pkce_verifier,
-                grant_type: "authorization_code",
-                redirect_uri: redirectUri,
-            }),
+        const data = await axios.post(
+            `${baseUrl}/token?
+            client_id=${env.MAL_CLIENT_ID}
+            &client_secret=${env.MAL_CLIENT_SECRET}
+            &grant_type=authorization_code
+            &code=${urlCode}
+            &code_verifier=${pkceVerifier}
+            &redirect_uri=${redirectUri}
+        
+        `,
+
             {
                 headers: {
-                    Authorization: `Basic ${Buffer.from(
-                        envServer.MAL_CLIENT_ID +
-                            ":" +
-                            envServer.MAL_CLIENT_SECRET
-                    ).toString("base64")}`,
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
             }
         );
-        return resp;
+        return data;
     } catch (error) {
+        console.error("Error verifying user code:");
         console.error(error);
         throw error;
     }
