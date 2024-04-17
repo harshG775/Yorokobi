@@ -1,4 +1,4 @@
-import verifyUserCode from "@/utils/MAL/auth/verifyUserCode";
+import { verifyUserCode } from "@/utils/MAL/auth/PKCE";
 export default function page({ searchParams }: any) {
     const { code, state } = searchParams;
     const handleVerify = async () => {
