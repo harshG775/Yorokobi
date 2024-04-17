@@ -30,7 +30,13 @@ export function generateCodeVerifier() {
         .replace(/\//g, "_")
         .replace(/=/g, "");
 
-    const authUrl = `${baseUrl}/authorize?response_type=code&client_id=${env.MAL_CLIENT_ID}&state=${codeVerifier}&redirect_uri=${redirectUri}&code_challenge=${pkce_verifier}&code_challenge_method=plain`;
+    const authUrl = `${baseUrl}/authorize?response_type=code&client_id=${
+        env.MAL_CLIENT_ID
+    }&state=${codeVerifier}&redirect_uri=${encodeURIComponent(
+        redirectUri
+    )}&code_challenge=${encodeURIComponent(
+        pkce_verifier
+    )}&code_challenge_method=plain`;
     return {
         authUrl,
     };
@@ -40,15 +46,17 @@ export function generateCodeVerifier() {
 export async function verifyUserCode(pkceVerifier: string, urlCode: string) {
     try {
         const data = await axios.post(
-            `${baseUrl}/token?
-            client_id=${env.MAL_CLIENT_ID}
-            &client_secret=${env.MAL_CLIENT_SECRET}
-            &grant_type=authorization_code
-            &code=${urlCode}
-            &code_verifier=${pkceVerifier}
-            &redirect_uri=${redirectUri}
-        
-        `,
+            `${baseUrl}/token`,
+            {
+                body: new URLSearchParams({
+                    client_id: env.MAL_CLIENT_ID,
+                    client_secret: env.MAL_CLIENT_SECRET,
+                    grant_type: "authorization_code",
+                    code: urlCode,
+                    code_verifier: pkceVerifier,
+                    redirect_uri: redirectUri,
+                }),
+            },
 
             {
                 headers: {
