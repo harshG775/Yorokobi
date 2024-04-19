@@ -2,7 +2,7 @@
 import React from "react";
 import { ToggleState } from "@/app/(home)/layout";
 import Logo from "@/components/brand/Logo";
-import { Menu } from "lucide-react";
+import { LayoutDashboard, Menu } from "lucide-react";
 
 export default function TopNavbar(props: ToggleState) {
     const { isSidebarOpen, setIsSidebarOpen } = props;
@@ -20,11 +20,16 @@ export default function TopNavbar(props: ToggleState) {
                             }
                             onClick={handleOpenSidebar}
                         >
-                            <Menu width={"24px"} height={"24px"}/>
+                            <Menu width={"24px"} height={"24px"} />
                         </button>
                     </li>
-                    <li className="w-full">
+                    <li>
                         <Logo />
+                    </li>
+                    <li className="ml-auto">
+                        <button className="block">
+                        <LayoutDashboard />
+                        </button>
                     </li>
                 </ul>
             </nav>
