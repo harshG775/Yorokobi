@@ -10,7 +10,7 @@ export default function SidebarLinks({ linksData }: props) {
                     key={link.title}
                     linkTo={link.linkTo}
                     title={link.title}
-                    iconName={link.iconName}
+                    Icon={link.Icon}
                 />
             ))}
         </ul>

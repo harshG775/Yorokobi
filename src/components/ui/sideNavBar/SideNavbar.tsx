@@ -2,27 +2,15 @@
 
 import React from "react";
 import SidebarLinks from "./sidebar/SidebarLinks";
-import { I } from "@/components/icons/iconify/I";
-const SidebarLinksData = [
-	{
-        linkTo: "/home",
-		title: "home",
-        iconName: "ic:baseline-home",
-	},
-	{
-        linkTo: "/tv",
-		title: "Tv Shows",
-        iconName: "ic:baseline-home",
-	},
-	{
-        linkTo: "/movie",
-		title: "Movies",
-        iconName: "ic:baseline-home",
-	},
-];
+
 import { ToggleState } from "@/app/(home)/layout";
-export default function SideNavbar(props:ToggleState) {
-    const { isSidebarOpen, setIsSidebarOpen } = props;
+import Logo from "@/components/brand/Logo";
+import { Menu } from "lucide-react";
+type sidebarProps =ToggleState & {
+    linksData:any
+}
+export default function SideNavbar(props:sidebarProps) {
+    const { isSidebarOpen, setIsSidebarOpen ,linksData} = props;
     const handleCloseSidebar = () => {
         setIsSidebarOpen(false)
     }
@@ -34,15 +22,17 @@ export default function SideNavbar(props:ToggleState) {
                     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-200
                 `}>
                 <div className="flex justify-between p-4">
-                    <div>
-                        <button onClick={handleCloseSidebar}>
-                            <I className="text-3xl" icon="material-symbols:menu" />
+                    <div className="grid place-content-center">
+                        <button  onClick={handleCloseSidebar}>
+                            <Menu width={"24px"} height={"24px"}/>
                         </button>
                     </div>
-                    <div>LOGO</div>
+                    <div>
+                        <Logo />
+                    </div>
                 </div>
                 <nav className="overflow-y-auto scrollbar-thin">
-                    <SidebarLinks linksData={SidebarLinksData} />
+                    <SidebarLinks linksData={linksData} />
                     {/* user */}
                 </nav>
             </aside>

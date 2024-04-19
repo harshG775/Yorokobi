@@ -1,8 +1,8 @@
 "use client";
-import Link from "next/link";
-import { I } from "@/components/icons/iconify/I";
 import React from "react";
 import { ToggleState } from "@/app/(home)/layout";
+import Logo from "@/components/brand/Logo";
+import { Menu } from "lucide-react";
 
 export default function TopNavbar(props: ToggleState) {
     const { isSidebarOpen, setIsSidebarOpen } = props;
@@ -20,16 +20,11 @@ export default function TopNavbar(props: ToggleState) {
                             }
                             onClick={handleOpenSidebar}
                         >
-                            <I
-                                className="text-3xl"
-                                icon="material-symbols:menu"
-                            />
+                            <Menu width={"24px"} height={"24px"}/>
                         </button>
                     </li>
                     <li className="w-full">
-                        <Link href={"/"} className="text-2xl">
-                            CrunchesRoll
-                        </Link>
+                        <Logo />
                     </li>
                 </ul>
             </nav>
