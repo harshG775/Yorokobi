@@ -2,7 +2,8 @@
 
 import React from "react";
 import SidebarLinks from "./sidebar/SidebarLinks";
-import { I } from "@/components/icons/iconify/I";
+import { ToggleState } from "@/app/(home)/layout";
+import { Menu } from "lucide-react";
 const SidebarLinksData = [
 	{
         linkTo: "/home",
@@ -20,7 +21,7 @@ const SidebarLinksData = [
         iconName: "ic:baseline-home",
 	},
 ];
-export default function SideNavbar(props:{isSidebarOpen:boolean,setIsSidebarOpen:(value:boolean)=>void}) {
+export default function SideNavbar(props:ToggleState) {
     const { isSidebarOpen, setIsSidebarOpen } = props;
     const handleCloseSidebar = () => {
         setIsSidebarOpen(false)
@@ -35,7 +36,7 @@ export default function SideNavbar(props:{isSidebarOpen:boolean,setIsSidebarOpen
                 <div className="flex justify-between p-4">
                     <div>
                         <button onClick={handleCloseSidebar}>
-                            <I className="text-3xl" icon="material-symbols:menu" />
+                            <Menu width={"24px"} height={"24px"} />
                         </button>
                     </div>
                     <div>LOGO</div>
