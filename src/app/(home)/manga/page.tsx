@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Manga() {
-  return (
-    <div>Manga</div>
-  )
+    return <div className="min-h-screen">Manga</div>;
 }

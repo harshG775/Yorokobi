@@ -11,7 +11,7 @@ export default function SidebarLink({linkTo,title,iconName}:Type_sidebarLinks) {
     const paths = usePathname();
     return (
         <li>
-            <Link href={linkTo} className={`flex gap-2 font-semibold ${paths.startsWith(linkTo)?"text-blue-600":"text-white"}`}>
+            <Link href={linkTo} className={`flex gap-2 font-semibold ${paths.startsWith(linkTo)?"text-blue-600":"text-neutral-900"}`}>
                 <I icon={iconName} />
                 <span>{title}</span>
             </Link>

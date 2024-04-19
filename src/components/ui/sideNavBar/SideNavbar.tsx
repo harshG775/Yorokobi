@@ -20,8 +20,8 @@ const SidebarLinksData = [
         iconName: "ic:baseline-home",
 	},
 ];
-
-export default function SideNavbar(props:{isSidebarOpen:boolean,setIsSidebarOpen:(value:boolean)=>void}) {
+import { ToggleState } from "@/app/(home)/layout";
+export default function SideNavbar(props:ToggleState) {
     const { isSidebarOpen, setIsSidebarOpen } = props;
     const handleCloseSidebar = () => {
         setIsSidebarOpen(false)
@@ -29,7 +29,7 @@ export default function SideNavbar(props:{isSidebarOpen:boolean,setIsSidebarOpen
 	return (
         <>
             <aside className={`
-                    z-50 fixed inset-y-0 left-0 w-64 bg-neutral-900
+                    z-50 fixed inset-y-0 left-0 w-64 bg-neutral-100
                     grid grid-rows-[auto,1fr]
                     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-200
                 `}>

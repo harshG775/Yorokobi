@@ -1,17 +1,16 @@
 "use client";
 import Link from "next/link";
 import { I } from "@/components/icons/iconify/I";
+import React from "react";
+import { ToggleState } from "@/app/(home)/layout";
 
-export default function TopNavbar(props: {
-    isSidebarOpen: boolean;
-    setIsSidebarOpen: (value: boolean) => void;
-}) {
+export default function TopNavbar(props: ToggleState) {
     const { isSidebarOpen, setIsSidebarOpen } = props;
     const handleOpenSidebar = () => {
         setIsSidebarOpen(true);
     };
     return (
-        <header className={`z-40 bg-neutral-900 sticky top-0`}>
+        <header className={`bg-neutral-100`}>
             <nav className="relative">
                 <ul className="w-full mx-auto flex items-center gap-2 p-2">
                     <li className="p-2 grid place-items-center">
