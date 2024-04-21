@@ -1,22 +1,15 @@
-import React from "react";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
+import Hero from "@/components/pages/manga/home/Hero";
+import MostViewed from "@/components/pages/manga/home/MostViewed";
+import NewReleases from "@/components/pages/manga/home/NewReleases";
+import RecentUpdates from "@/components/pages/manga/home/RecentUpdates";
+
 export default function Manga() {
     return (
-        <div className="min-h-screen">
-            <div>Manga</div>
-            <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger>Hover</TooltipTrigger>
-                    <TooltipContent>
-                        <p>Add to library</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        </div>
+        <>
+            <Hero />
+            <MostViewed />
+            <RecentUpdates />
+            <NewReleases />
+        </>
     );
 }
