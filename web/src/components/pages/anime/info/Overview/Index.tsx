@@ -41,7 +41,6 @@ export type OverviewProps = {
     };
 };
 export default function Overview({ data }: OverviewProps) {
-    console.log(data);
     return (
         <div>
             <div>

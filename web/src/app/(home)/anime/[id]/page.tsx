@@ -3,6 +3,7 @@
 // import React from "react";
 
 import Overview from "@/components/pages/anime/info/Overview/Index";
+import Player from "@/components/pages/anime/info/Player/Index";
 import { Axios } from "@/lib/Axios";
 import { envServer } from "@/utils/env/envServer";
 
@@ -36,9 +37,6 @@ import { envServer } from "@/utils/env/envServer";
 //     }
 // }
 
-function Player() {
-    return <div>Player</div>;
-}
 
 function Comments() {
     return <div>Comments</div>;
@@ -61,7 +59,7 @@ export default async function page({ params }: AnimeOverviewProps) {
     return (
         <main className="max-w-8xl w-[calc(100vw-2rem)] space-y-2 mx-auto bg-neutral-100">
             <div className="grid grid-cols-[3fr,1fr]">
-                <Player />
+                <Player data={data} />
                 <Overview data={data}/>
             </div>
             <div className="grid grid-cols-[3fr,1fr]">
