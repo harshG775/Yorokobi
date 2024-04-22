@@ -76,6 +76,12 @@ const config = {
             fontFamily: {
                 sans: ["var(--font-sans)", ...fontFamily.sans],
             },
+            minWidth: {
+                "8xl": "96rem",
+            },
+            maxWidth: {
+                "8xl": "96rem",
+            },
         },
     },
     plugins: [require("tailwindcss-animate")],
