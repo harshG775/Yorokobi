@@ -4,6 +4,7 @@
 
 import Overview from "@/components/pages/anime/info/Overview/Index";
 import Player from "@/components/pages/anime/info/Player/Index";
+import Recommended from "@/components/pages/anime/info/Recommended/Index";
 import Related from "@/components/pages/anime/info/Related/Index";
 import { Axios } from "@/lib/Axios";
 import { envServer } from "@/utils/env/envServer";
@@ -42,10 +43,6 @@ function Comments() {
     return <div>Comments</div>;
 }
 
-function Recommended() {
-    return <div>Recommended</div>;
-}
-
 type AnimeOverviewProps = {
     params: { id: string };
 };
@@ -70,7 +67,7 @@ export default async function page({ params }: AnimeOverviewProps) {
                 </div>
                 <div className="grid xl:grid-cols-[3fr,1fr]">
                     <Comments />
-                    <Recommended />
+                    <Recommended data={data} />
                 </div>
             </main>
         );

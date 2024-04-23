@@ -2,10 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-type RelatedProps = {
+type RecommendedProps = {
     data: {
         id: number;
-        related_anime: {
+        recommendations: {
             node: {
                 id: number;
                 title: string;
@@ -14,43 +14,24 @@ type RelatedProps = {
                     medium: string;
                 };
             };
-            relation_type: string;
-            relation_type_formatted: string;
+            num_recommendations: number;
         }[];
     };
 };
-export default function Related({ data }: RelatedProps) {
-    const { related_anime } = data;
-    const [relationOptions, setRelationOptions] = useState("side_story");
-    const [filteredRelate, setFilteredRelate] = useState(related_anime);
+export default function Recommended({ data }: RecommendedProps) {
+    const { recommendations } = data;
 
-    useEffect(() => {
-        function filterRelated(filterBy:string) {
-            const newData = related_anime.filter((item) => item.relation_type === filterBy);
-            setFilteredRelate(newData);
-        }
-        filterRelated(relationOptions)
-    }, [relationOptions])
+    console.log(data);
     return (
-        <Section title="Related">
-            <div>
-                <select name="relationOptions" value={relationOptions} onChange={(e)=>setRelationOptions(e.target.value)}>
-                    <option value="side_story">Side Story</option>
-                    <option value="summary">Summary</option>
-                    <option value="sequel">Sequel</option>
-                    <option value="prequel">Prequel</option>
-                    <option value="alternative_setting">Alternative Setting</option>
-                    <option value="alternative_version">Alternative Version</option>
-                    <option value="parent_story">Parent Story</option>
-                    <option value="full_story">Full Story</option>
-                </select>
-            </div>
+        <Section title="Recommended">
             <ListItem>
-                {filteredRelate.map(({ node ,relation_type}) => (
+                {recommendations.map(({ node, num_recommendations }) => (
                     <List key={node.id}>
                         <Link
                             href={`/anime/${node.id}`}
-                            className={"flex rounded-md overflow-hidden bg-neutral-200/50 hover:bg-neutral-200 focus:bg-neutral-200 active:bg-neutral-200"}
+                            className={
+                                "flex rounded-md overflow-hidden bg-neutral-200/50 hover:bg-neutral-200 focus:bg-neutral-200 active:bg-neutral-200"
+                            }
                             key={node.id}
                         >
                             <div className="h-full grid grid-flow-col gap-4 items-center">
@@ -63,7 +44,7 @@ export default function Related({ data }: RelatedProps) {
                                 />
                                 <div className="space-y-2 p-2">
                                     <p className="text-lg font-bold tracking-tight text-neutral-800">{node.title}</p>
-                                    <div className="text-neutral-500 capitalize">{relation_type.replace("_"," ")}</div>
+                                    <div className="text-neutral-500 capitalize">Recommend by: {num_recommendations}</div>
                                 </div>
                             </div>
                         </Link>
@@ -74,11 +55,9 @@ export default function Related({ data }: RelatedProps) {
     );
 }
 
-
-
 type ListItemProps = {
     children: React.ReactNode;
-}
+};
 type ListProps = {
     children: React.ReactNode;
 };
@@ -87,12 +66,8 @@ type SectionProps = {
     children: React.ReactNode;
 };
 
-export function List({children}:ListItemProps) {
-    return (
-        <li>
-            {children}
-        </li>
-    )
+export function List({ children }: ListItemProps) {
+    return <li>{children}</li>;
 }
 export function ListItem({ children }: ListProps) {
     return (
@@ -109,6 +84,3 @@ function Section({ title, children }: SectionProps) {
         </section>
     );
 }
-
-
-
