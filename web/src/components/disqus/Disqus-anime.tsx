@@ -8,7 +8,7 @@ type DisqusAnimeProps = {
 export function DisqusAnime({ id, title ,episode} : DisqusAnimeProps) {
     return (
         <DiscussionEmbed
-            shortname={"my-anime-list"}
+            shortname={"yorokobi"}
             config={{
                 url: `http://localhost:3000/anime/${id}/${episode}`,
                 identifier: id,
