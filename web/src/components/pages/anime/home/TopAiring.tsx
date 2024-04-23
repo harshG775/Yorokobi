@@ -40,7 +40,8 @@ export default function TopAiring() {
     // console.log(data.data)
     return (
         <div>
-            {data?.data?.map((anime) => (
+            {/* @ts-ignore TODO */}
+            {data?.data?.map((anime: any) => (
                 <div key={anime.mal_id}>
                     <Link href={`/anime/${anime.mal_id}`}>
                         <Image
