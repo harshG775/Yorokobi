@@ -29,30 +29,6 @@ export default function Player({ data }: PlayerProps) {
     return (
         <div>
             <div>iframe : {id}</div>
-            <div className="grid gap-4 grid-rows-1">
-                {related_anime.map(({ node, relation_type }) => {
-                    if (
-                        relation_type === "prequel" ||
-                        relation_type === "sequel"
-                    ) {
-                        return (
-                            <Link
-                                href={`/anime/${node.id}`}
-                                className={`mt-4 text-blue-500`}
-                                key={node.id}
-                            >
-                                <Image
-                                    src={node.main_picture.large}
-                                    alt={""}
-                                    width={100}
-                                    height={100}
-                                />
-                                {node.title}
-                            </Link>
-                        );
-                    }
-                })}
-            </div>
             <div>Episode</div>
         </div>
     );

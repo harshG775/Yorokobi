@@ -4,6 +4,7 @@
 
 import Overview from "@/components/pages/anime/info/Overview/Index";
 import Player from "@/components/pages/anime/info/Player/Index";
+import Related from "@/components/pages/anime/info/Related/Index";
 import { Axios } from "@/lib/Axios";
 import { envServer } from "@/utils/env/envServer";
 
@@ -37,7 +38,6 @@ import { envServer } from "@/utils/env/envServer";
 //     }
 // }
 
-
 function Comments() {
     return <div>Comments</div>;
 }
@@ -50,17 +50,24 @@ type AnimeOverviewProps = {
     params: { id: string };
 };
 export default async function page({ params }: AnimeOverviewProps) {
-    const { data } = await Axios.get(`anime/${params.id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics,country,time`, {
-        headers: {
-            "X-MAL-CLIENT-ID": envServer.MAL_CLIENT_ID,
-        },
-    });
+    const { data } = await Axios.get(
+        `anime/${params.id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics,country,time`,
+        {
+            headers: {
+                "X-MAL-CLIENT-ID": envServer.MAL_CLIENT_ID,
+            },
+        }
+    );
     console.log(data.recommendations);
     return (
-        <main className="max-w-8xl w-[calc(100vw-2rem)] space-y-2 mx-auto bg-neutral-100">
-            <div className="grid grid-cols-[3fr,1fr]">
-                <Player data={data} />
-                <Overview data={data}/>
+        <main className="max-w-8xl space-y-2 mx-auto bg-neutral-100">
+            
+            <div className="grid grid-cols-[3fr,1fr] grid-rows-[96rem_1fr]">
+                <div>
+                    <Player data={data} />
+                    <Overview data={data} />
+                </div>
+                <Related data={data} />
             </div>
             <div className="grid grid-cols-[3fr,1fr]">
                 <Comments />

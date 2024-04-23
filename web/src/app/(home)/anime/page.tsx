@@ -19,7 +19,7 @@ import Link from "next/link";
 export default async function Anime() {
     try {
         const { data } = await Axios.get(
-            "anime/ranking?ranking_type=airing&limit=20&offset=0",
+            "anime/ranking?ranking_type=favorite&limit=20&offset=0",
             {
                 headers: {
                     "X-MAL-CLIENT-ID": envServer.MAL_CLIENT_ID,
