@@ -23,7 +23,7 @@ const SidebarLinksData = [
 ];
 
 type Props = {
-    children: Readonly<{ children: React.ReactNode }>;
+    children: React.ReactNode;
 };
 export type ToggleState = {
     isSidebarOpen: boolean;

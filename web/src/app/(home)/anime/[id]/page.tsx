@@ -15,7 +15,7 @@ type CommentsProps = {
 function Comments({ data, episode, className }: CommentsProps) {
     return (
         <div className={cn("p-4", className)}>
-            <DisqusAnime id={data.id + episode} title={data.title} />
+            {episode && <DisqusAnime id={data.id} episode={episode} title={data.title} />}
         </div>
     );
 }
