@@ -1,7 +1,4 @@
-// import axios from "axios";
-// import Image from "next/image";
-// import React from "react";
-
+import { DisqusAnime } from "@/components/disqus/Disqus-anime";
 import Overview from "@/components/pages/anime/info/Overview/Index";
 import Player from "@/components/pages/anime/info/Player/Index";
 import Recommended from "@/components/pages/anime/info/Recommended/Index";
@@ -9,38 +6,12 @@ import Related from "@/components/pages/anime/info/Related/Index";
 import { Axios } from "@/lib/Axios";
 import { envServer } from "@/utils/env/envServer";
 
-// type props = {
-//     params: { id: string };
-// };
-// export default async function page({ params }: props) {
-//     try {
-//         const { data } = await axios.get(
-//             `https://api.jikan.moe/v4/anime/${params.id}`
-//         );
-//         console.log(data.data);
-//         return (
-//             <div>
-//                 <Image
-//                     alt={data.data.title}
-//                     width={200}
-//                     height={200}
-//                     src={data.data.images.jpg.large_image_url}
-//                 />
-//                 <h4 className="font-bold">{data.data.title}</h4>
-//                 <p>{data.data.synopsis}</p>
-//             </div>
-//         );
-//     } catch (error: any) {
-//         return (
-//             <div className="grid place-content-center min-h-96">
-//                 {error?.response?.data?.message}
-//             </div>
-//         );
-//     }
-// }
-
-function Comments() {
-    return <div>Comments</div>;
+function Comments({ data }: { data: { id: string; title: string } }) {
+    return (
+        <div>
+            <DisqusAnime id={data.id} title={data.title} />
+        </div>
+    );
 }
 
 type AnimeOverviewProps = {
@@ -66,7 +37,7 @@ export default async function page({ params }: AnimeOverviewProps) {
                     <Related data={data} />
                 </div>
                 <div className="grid xl:grid-cols-[3fr,1fr]">
-                    <Comments />
+                    <Comments data={data} />
                     <Recommended data={data} />
                 </div>
             </main>
@@ -76,9 +47,7 @@ export default async function page({ params }: AnimeOverviewProps) {
         return (
             <main className="max-w-8xl space-y-2 mx-auto bg-neutral-100 p-2">
                 <div className="grid xl:grid-cols-[3fr,1fr]">
-                    <div>
-                        
-                    </div>
+                    <div></div>
                 </div>
                 <div className="grid xl:grid-cols-[3fr,1fr]">
                     <h1>Something went wrong</h1>
