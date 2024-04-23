@@ -50,29 +50,43 @@ type AnimeOverviewProps = {
     params: { id: string };
 };
 export default async function page({ params }: AnimeOverviewProps) {
-    const { data } = await Axios.get(
-        `anime/${params.id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics,country,time`,
-        {
-            headers: {
-                "X-MAL-CLIENT-ID": envServer.MAL_CLIENT_ID,
-            },
-        }
-    );
-    console.log(data.recommendations);
-    return (
-        <main className="max-w-8xl space-y-2 mx-auto bg-neutral-100">
-            
-            <div className="grid grid-cols-[3fr,1fr] grid-rows-[96rem_1fr]">
-                <div>
-                    <Player data={data} />
-                    <Overview data={data} />
+    try {
+        const { data } = await Axios.get(
+            `anime/${params.id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics,country,time`,
+            {
+                headers: {
+                    "X-MAL-CLIENT-ID": envServer.MAL_CLIENT_ID,
+                },
+            }
+        );
+        return (
+            <main className="max-w-8xl space-y-2 mx-auto bg-neutral-100 p-2">
+                <div className="grid xl:grid-cols-[3fr,1fr]">
+                    <div>
+                        <Player data={data} />
+                        <Overview data={data} />
+                    </div>
+                    <Related data={data} />
                 </div>
-                <Related data={data} />
-            </div>
-            <div className="grid grid-cols-[3fr,1fr]">
-                <Comments />
-                <Recommended />
-            </div>
-        </main>
-    );
+                <div className="grid xl:grid-cols-[3fr,1fr]">
+                    <Comments />
+                    <Recommended />
+                </div>
+            </main>
+        );
+    } catch (error) {
+        console.log(error);
+        return (
+            <main className="max-w-8xl space-y-2 mx-auto bg-neutral-100 p-2">
+                <div className="grid xl:grid-cols-[3fr,1fr]">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div className="grid xl:grid-cols-[3fr,1fr]">
+                    <h1>Something went wrong</h1>
+                </div>
+            </main>
+        );
+    }
 }
