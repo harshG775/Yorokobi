@@ -4,11 +4,16 @@ import Player from "@/components/pages/anime/info/Player/Index";
 import Recommended from "@/components/pages/anime/info/Recommended/Index";
 import Related from "@/components/pages/anime/info/Related/Index";
 import { Axios } from "@/lib/Axios";
+import { cn } from "@/lib/utils";
 import { envServer } from "@/utils/env/envServer";
 
-function Comments({ data }: { data: { id: string; title: string } }) {
+type CommentsProps = {
+    data: { id: string; title: string }; 
+    className: string
+};
+function Comments({ data, className }: CommentsProps) {
     return (
-        <div>
+        <div className={cn("p-4", className)}>
             <DisqusAnime id={data.id} title={data.title} />
         </div>
     );
@@ -37,7 +42,7 @@ export default async function page({ params }: AnimeOverviewProps) {
                     <Related data={data} />
                 </div>
                 <div className="grid xl:grid-cols-[3fr,1fr]">
-                    <Comments data={data} />
+                    <Comments className="order-2 xl:order-none " data={data} />
                     <Recommended data={data} />
                 </div>
             </main>
