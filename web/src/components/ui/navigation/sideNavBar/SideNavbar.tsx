@@ -3,22 +3,23 @@
 import React from "react";
 import SidebarLinks from "./sidebar/SidebarLinks";
 import { ToggleState } from "@/app/(home)/layout";
-import { Menu } from "lucide-react";
+// lucid icon type
+import { HomeIcon, Menu } from "lucide-react";
 const SidebarLinksData = [
 	{
         linkTo: "/home",
 		title: "home",
-        iconName: "ic:baseline-home",
+        Icon: HomeIcon,
 	},
 	{
         linkTo: "/tv",
 		title: "Tv Shows",
-        iconName: "ic:baseline-home",
+        Icon: HomeIcon,
 	},
 	{
         linkTo: "/movie",
 		title: "Movies",
-        iconName: "ic:baseline-home",
+        Icon: HomeIcon,
 	},
 ];
 export default function SideNavbar(props:ToggleState) {
