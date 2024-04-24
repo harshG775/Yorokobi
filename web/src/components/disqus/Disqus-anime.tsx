@@ -10,7 +10,7 @@ export function DisqusAnime({ id, title ,episode} : DisqusAnimeProps) {
         <DiscussionEmbed
             shortname={"yorokobi"}
             config={{
-                url: `http://localhost:3000/anime/${id}/${episode}`,
+                url: `https://yorokobi.vercel.app/anime/${id}/${episode}`,
                 identifier: id,
                 title: title,
                 language: "en_US",
