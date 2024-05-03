@@ -21,17 +21,15 @@ export default function Card({ item }: CardPropsType) {
                 href={`/anime/${id}`}
                 className="
                 bg-neutral-900
-                grid grid-cols-[145px,1fr] h-52  rounded-lg overflow-hidden"
+                grid grid-cols-[160px,1fr] h-52  rounded-lg overflow-hidden"
             >
-                <div>
-                    <Image width={145} height={208} src={image} alt="" />
-                </div>
-                <div>
+                <Image className="h-full" width={160} height={208} src={image} alt="" />
+                <div className="p-2 space-y-2">
                     <div>{title}</div>
                     <div className="text-xs flex gap-2 flex-wrap">
                         {genres.map((genre: string, i: number) => (
                             <span
-                                className="bg-neutral-800 rounded-xl px-2"
+                                className="bg-neutral-800 rounded-sm px-2"
                                 key={genre + i}
                             >
                                 {genre}
