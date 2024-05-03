@@ -37,13 +37,13 @@ export default function TopAiring() {
             ) : status === "error" ? (
                 <p>Error: {error.message}</p>
             ) : (
-                <div>
+                <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2 p-2">
                     {data?.pages.map(({data}: responseType) => {
                         return (
                             <Cards key={data.currentPage} results={data.results} />
                         );
                     })}
-                </div>
+                </ul>
             )}
             <div className="p-4">
                 {isFetchingNextPage ? <svg className="animate-spin h-5 w-5 mr-3 border-2 border-t-transparent rounded-full border-white"></svg> : null}
