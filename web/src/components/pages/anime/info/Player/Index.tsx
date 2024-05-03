@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -25,11 +26,15 @@ export default function Player({ data }: PlayerProps) {
     const { id, related_anime } = data;
     const [currentSeason, setCurrentSeason] = useState(1);
     const [currentEpisode, setCurrentEpisode] = useState(1);
-    // console.log(data);
+    const handleFetchImage = async ()=>{
+        const resp = await axios.get(`https://cdn.myanimelist.net/images/anime/${currentSeason}/${currentEpisode}.jpg`);
+        console.log(resp);
+    }
+
     return (
         <div>
             <div>iframe : {id}</div>
-            <div>Episode</div>
+            <div onClick={handleFetchImage}>Episode</div>
         </div>
     );
 }
