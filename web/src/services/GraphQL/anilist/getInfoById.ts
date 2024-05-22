@@ -13,7 +13,7 @@ export async function getInfoById(id: number) {
                 }
                 description
                 coverImage {
-                    large
+                    medium
                 }
                 bannerImage
             }
@@ -22,8 +22,32 @@ export async function getInfoById(id: number) {
     });
 }
 
-export async function getTrending() {
-    return await AL({
+
+
+
+
+
+type TrendingType = {
+    Page: {
+        media: {
+            id: number;
+            title: {
+                romaji: string;
+                english: string;
+                native: string;
+            };
+            coverImage: {
+                medium: string;
+            };
+            averageScore: number;
+            type: string;
+            duration: string;
+        }[];
+    };
+};
+export async function getTrending(): Promise<TrendingType> {
+
+    const {data} =  await AL({
         query: `
             query {
                 Page(page: 1, perPage: 20) {
@@ -35,12 +59,15 @@ export async function getTrending() {
                             native
                         }
                         coverImage {
-                            large
+                            medium
                         }
                         averageScore
+                        type
+                        duration
                     }
                 }
             }
         `,
     });
+    return data.data;
 }
