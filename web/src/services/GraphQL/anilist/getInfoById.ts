@@ -1,4 +1,5 @@
 import { AL } from "@/lib/Axios";
+import { TrendingType } from "@/types/aniListTypes";
 import { gql } from "@/utils/stringMinify";
 
 export async function getInfoById(id: number) {
@@ -22,32 +23,8 @@ export async function getInfoById(id: number) {
     });
 }
 
-
-
-
-
-
-type TrendingType = {
-    Page: {
-        media: {
-            id: number;
-            title: {
-                romaji: string;
-                english: string;
-                native: string;
-            };
-            coverImage: {
-                medium: string;
-            };
-            averageScore: number;
-            type: string;
-            duration: string;
-        }[];
-    };
-};
 export async function getTrending(): Promise<TrendingType> {
-
-    const {data} =  await AL({
+    const { data } = await AL({
         query: `
             query {
                 Page(page: 1, perPage: 20) {

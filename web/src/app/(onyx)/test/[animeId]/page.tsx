@@ -1,17 +1,11 @@
 "use client";
-import {
-    getInfoById,
-    getTrending,
-} from "@/services/GraphQL/anilist/getInfoById";
-import { useQuery } from "@tanstack/react-query";
+import { useGetTrending } from "@/services/GraphQL/aniList";
+
 import Image from "next/image";
 import Link from "next/link";
 
 export default function TestPage() {
-    const { data, status } = useQuery({
-        queryKey: ["trending"],
-        queryFn: getTrending,
-    });
+    const { data, status } = useGetTrending();
 
     return (
         <main>
@@ -28,7 +22,9 @@ export default function TestPage() {
                                     width={100}
                                     height={100}
                                 />
-                                <h4 className="line-clamp-1">{m.title.romaji}</h4>
+                                <h4 className="line-clamp-1">
+                                    {m.title.romaji}
+                                </h4>
                             </Link>
                         </li>
                     ))}
