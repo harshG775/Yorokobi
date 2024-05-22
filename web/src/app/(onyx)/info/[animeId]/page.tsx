@@ -1,0 +1,92 @@
+import { getInfo } from "@/services/gogoAnime/api";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+
+export default async function InfoPage({
+    params,
+}: {
+    params: { animeId: string };
+}) {
+    try {
+        const { animeId } = params;
+        const data = await getInfo(animeId);
+        console.log(data.image);
+        return (
+            <main>
+                <header>
+                    {/* hero info and poster card */}
+                    <Image
+                        src={data.image}
+                        alt="poster"
+                        width={200}
+                        height={300}
+                    />
+                    background and poster
+                </header>
+
+                <section>
+                    {/* Tabs */}
+                    <ul>
+                        <li>overview</li>
+                        <li>Relations</li>
+                        <li>Characters</li>
+                        <li>Staff</li>
+                    </ul>
+                    <section>
+                        <h3>overview</h3>
+                        <h3>Relations</h3>
+                        <h3>Characters</h3>
+                        <h3>Staff</h3>
+                        {/* tab content */}
+                    </section>
+                </section>
+
+                <section>
+                    {/* episodes */}
+                    <div>
+                        <h3>Episodes {"refresh Icon"}</h3>
+                        <ul>
+                            <li>
+                                {" "}
+                                episode
+                                <span>0-100</span>
+                                <span>101-200</span>
+                                <span>201-230</span>
+                            </li>
+                            <li>
+                                <span>server-1</span>
+                                <span>server-2</span>
+                            </li>
+                            <li>
+                                <span>dub</span>
+                                <span>sub</span>
+                            </li>
+                            <li>
+                                listStyle
+                                <span>image only</span>
+                                <span>image and details</span>
+                                <span>episodes only</span>
+                                <span>Order - ascending/descending</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul>
+                        <li>episodes: 1</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div>
+                        <h3>Recommendations</h3>
+                    </div>
+                    <ul>{/* Recommended anime carousel*/}</ul>
+                </section>
+            </main>
+        );
+    } catch (error: any) {
+        if (error.response.status === 404) {
+            return notFound();
+        }
+        return <main>something went wrong</main>;
+    }
+}
