@@ -1,12 +1,12 @@
 import { AL } from "@/lib/Axios";
-import { TrendingType } from "@/types/aniListTypes";
+import { InfoType, TrendingType } from "@/types/aniListTypes";
 import { gql } from "@/utils/stringMinify";
 
-export async function getInfoById(id: number) {
-    return await AL({
+export async function getInfoById(id: string,type:string): Promise<InfoType> {
+    const { data } = await AL({
         query: `
         query {
-            Media(id: ${id}, type: ANIME) {
+            Media(id: ${id}, type: ${type}) {
                 title {
                     romaji
                     english
@@ -15,12 +15,14 @@ export async function getInfoById(id: number) {
                 description
                 coverImage {
                     medium
+                    large
                 }
                 bannerImage
             }
         }
     `,
     });
+    return data.data
 }
 
 export async function getTrending(): Promise<TrendingType> {

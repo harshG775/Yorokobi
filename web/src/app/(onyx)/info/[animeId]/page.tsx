@@ -1,4 +1,4 @@
-import { getInfo } from "@/services/gogoAnime/api";
+import { getInfoById } from "@/services/GraphQL/anilist/getInfoById";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -9,19 +9,27 @@ export default async function InfoPage({
 }) {
     try {
         const { animeId } = params;
-        const data = await getInfo(animeId);
-        console.log(data.image);
+        const { Media } = await getInfoById(animeId, "ANIME");
         return (
             <main>
                 <header>
                     {/* hero info and poster card */}
                     <Image
-                        src={data.image}
+                        className="w-full h-full object-cover"
+                        src={Media.bannerImage}
                         alt="poster"
-                        width={200}
-                        height={300}
+                        width={720}
+                        height={480}
                     />
-                    background and poster
+                    <div>
+                        <Image
+                            src={Media.coverImage.large}
+                            alt="poster"
+                            width={240}
+                            height={360}
+                        />
+                        <h1>{Media.title.romaji}</h1>
+                    </div>
                 </header>
 
                 <section>
