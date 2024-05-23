@@ -9,7 +9,7 @@ export default async function InfoPage({
 }) {
     try {
         const { animeId } = params;
-        const { Media } = await getInfoById(animeId, "ANIME");
+        const { Media } = await getInfoById(animeId);
         return (
             <main>
                 <header>
