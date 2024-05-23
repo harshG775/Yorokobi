@@ -1,7 +1,7 @@
 import { getInfoById } from "@/services/GraphQL/anilist/Axios_aniList";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-
 export default async function InfoPage({
     params,
 }: {
@@ -30,6 +30,9 @@ export default async function InfoPage({
                             height={360}
                         />
                         <h1>{Media?.title?.romaji}</h1>
+                    </div>
+                    <div>
+                        <Link href={`/watch/${Media.title.romaji.replace(" ", "-")}`}>Watch</Link>
                     </div>
                 </header>
 
