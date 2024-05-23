@@ -10,25 +10,26 @@ export default async function InfoPage({
     try {
         const { animeId } = params;
         const { Media } = await getInfoById(animeId);
+        console.log(Media);
         return (
             <main>
                 <header>
                     {/* hero info and poster card */}
                     <Image
-                        className="w-full h-full object-cover"
-                        src={Media.bannerImage}
+                        className="w-full h-52 sm:h-72 object-cover bg-top"
+                        src={Media?.bannerImage || Media.coverImage.extraLarge}
                         alt="poster"
                         width={720}
                         height={480}
                     />
                     <div>
                         <Image
-                            src={Media.coverImage.large}
+                            src={Media?.coverImage?.large||" "}
                             alt="poster"
                             width={240}
                             height={360}
                         />
-                        <h1>{Media.title.romaji}</h1>
+                        <h1>{Media?.title?.romaji}</h1>
                     </div>
                 </header>
 

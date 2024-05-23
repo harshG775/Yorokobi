@@ -6,7 +6,7 @@ export type InfoType = {
             native: string;
         };
         coverImage: {
-            medium: string;
+            extraLarge: string;
             large: string;
         };
         averageScore: number;

@@ -14,7 +14,7 @@ export async function getInfoById(id: string): Promise<InfoType> {
                 }
                 description
                 coverImage {
-                    medium
+                    extraLarge
                     large
                 }
                 bannerImage
