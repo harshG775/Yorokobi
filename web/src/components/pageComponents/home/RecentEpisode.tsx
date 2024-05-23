@@ -1,8 +1,8 @@
 "use client";
 
+import SectionTitle from "@/components/ui/SectionTitle";
+import Card from "@/components/ui/cards/Card";
 import { useGetRecentEpisodes } from "@/services/queries";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function RecentEpisodes() {
     const { data, status } = useGetRecentEpisodes();
@@ -14,16 +14,13 @@ export default function RecentEpisodes() {
     }
     return (
         <section>
-            <ul>
-                {data?.results?.map((episode) => (
-                    <li key={episode.id}>
-                        <Link href={`/anime/${episode.id}`}
-                        className="flex gap-2 p-2"
-                        >
-                            <Image width={80} height={80} src={episode.image} alt={episode.title} />
-                            {episode.title}
-                        </Link>
-                    </li>
+            <SectionTitle
+                title="Recently Updated"
+                titleRight={<div>options</div>}
+            />
+            <ul className=" grid gap-4 grid-cols-[repeat(auto-fit,_minmax(170px,_1fr))]">
+                {data?.results?.map((data) => (
+                    <Card key={data.id} data={data} />
                 ))}
             </ul>
         </section>

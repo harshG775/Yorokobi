@@ -1,37 +1,6 @@
-import Icon from "@/components/icons/lucide";
-import Link from "next/link";
+import RecentEpisodes from "@/components/pageComponents/home/RecentEpisode";
+import SectionTitle from "@/components/ui/SectionTitle";
 import React from "react";
-
-type SectionTitleType = {
-    title: string;
-    href?: string;
-    titleRight?: React.ReactNode;
-};
-export function SectionTitle({ href, title, titleRight }: SectionTitleType) {
-    return (
-        <div className="flex justify-between items-center pt-8">
-            <h2 className="grid gap-2 items-center grid-cols-[1fr_auto]">
-                {href ? (
-                    <>
-                        <Link
-                            href={"/"}
-                            className="uppercase text-xl font-semibold text-foreground/80 hover:text-primary transition-colors ease-out"
-                        >
-                            {title}
-                        </Link>
-                        <Icon
-                            name={"MoveRight"}
-                            className="text-foreground/80"
-                        />
-                    </>
-                ) : (
-                    <span className="text-2xl font-bold">{title}</span>
-                )}
-            </h2>
-            {titleRight}
-        </div>
-    );
-}
 
 export default function Home() {
     return (
@@ -47,16 +16,7 @@ export default function Home() {
             </section>
             <div className="grid gap-2 lg:grid-cols-[3fr_1fr] max-w-8xl mx-auto">
                 <aside>
-                    <section>
-                        <SectionTitle
-                            title="Recently Updated"
-                            titleRight={<div>options</div>}
-                        />
-
-                        <ul className="min-h-screen border border-primary">
-                            content
-                        </ul>
-                    </section>
+                    <RecentEpisodes/>
                     <section className="grid gap-2 lg:grid-cols-3">
                         <section>
                             <SectionTitle title="new release" href="/filter?by=new-release" />
