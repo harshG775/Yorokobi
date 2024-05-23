@@ -1,4 +1,4 @@
-import { getInfoById } from "@/services/GraphQL/anilist/getInfoById";
+import { getInfoById } from "@/services/GraphQL/anilist/Axios_aniList";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
