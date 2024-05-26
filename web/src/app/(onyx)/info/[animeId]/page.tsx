@@ -1,3 +1,5 @@
+import TabsSection from "@/components/pageComponents/animeInfo/tabsSection/TabsSection";
+import Tabs from "@/components/ui/tabs/Tabs";
 import { getInfoById } from "@/services/GraphQL/anilist/Axios_aniList";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,13 +17,22 @@ export default async function InfoPage({
             <main>
                 <header>
                     {/* hero info and poster card */}
-                    <Image
+                    <div
+                        style={{
+                            backgroundImage: `url(${Media?.bannerImage})`,
+                            borderImage: "inset linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 1 stretch",
+                        }}
+                        className="w-full h-96 bg-center bg-cover"
+                    >
+
+                    </div>
+                    {/* <Image
                         className="w-full h-52 sm:h-72 object-cover bg-top"
                         src={Media?.bannerImage || Media.coverImage.extraLarge}
                         alt="poster"
                         width={720}
                         height={480}
-                    />
+                    /> */}
                     <div>
                         <Image
                             src={Media?.coverImage?.large||" "}
@@ -36,22 +47,7 @@ export default async function InfoPage({
                     </div>
                 </header>
 
-                <section>
-                    {/* Tabs */}
-                    <ul>
-                        <li>overview</li>
-                        <li>Relations</li>
-                        <li>Characters</li>
-                        <li>Staff</li>
-                    </ul>
-                    <section>
-                        <h3>overview</h3>
-                        <h3>Relations</h3>
-                        <h3>Characters</h3>
-                        <h3>Staff</h3>
-                        {/* tab content */}
-                    </section>
-                </section>
+                <TabsSection/>
 
                 <section>
                     {/* episodes */}

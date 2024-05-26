@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Card({ data }: any) {
     return (
-        <li className="group overflow-hidden rounded-md grid grid-rows-[3fr_1fr] hover:scale-105 transition-transform ease-out duration-200">
+        <li className="group overflow-hidden rounded-md grid grid-rows-[3fr_1fr] hover:scale-105 transition-transform ease-out duration-200 shadow-lg">
             <Link href={`/watch/${data.id}`}>
                 <Image
                     src={data.image}
