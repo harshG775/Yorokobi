@@ -1,5 +1,4 @@
 import TabsSection from "@/components/pageComponents/animeInfo/tabsSection/TabsSection";
-import Tabs from "@/components/ui/tabs/Tabs";
 import { getInfoById } from "@/services/GraphQL/anilist/Axios_aniList";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,8 +10,9 @@ export default async function InfoPage({
 }) {
     try {
         const { animeId } = params;
-        const { Media } = await getInfoById(animeId);
-        console.log(Media);
+        const resp = await getInfoById(animeId);
+        const { Media } = resp;
+        // console.log(Media);
         return (
             <main>
                 <header>
@@ -47,7 +47,7 @@ export default async function InfoPage({
                     </div>
                 </header>
 
-                <TabsSection/>
+                <TabsSection info={resp}/>
 
                 <section>
                     {/* episodes */}
