@@ -24,6 +24,27 @@ export async function getInfoById(id: string): Promise<InfoType> {
     });
     return data.data
 }
+export async function getRelatedById(id: string): Promise<InfoType> {
+    const { data } = await AL({
+        query: `
+        query {
+            Media(id: ${id}, type: ANIME) {
+                relations {
+                    nodes {
+                      title {
+                        romaji
+                        english
+                        native
+                        userPreferred
+                    }
+                    format
+                }
+            }
+        }
+    `,
+    });
+    return data.data
+}
 
 export async function getTrending(): Promise<TrendingType> {
     const { data } = await AL({

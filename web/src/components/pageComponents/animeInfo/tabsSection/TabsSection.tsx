@@ -6,7 +6,7 @@ import Staff from "./sections/Staff";
 import { InfoType } from "@/types/aniListTypes";
 
 export default function TabsSection({ info }: { info: InfoType }) {
-    console.log(info);
+    // console.log(info);
     return (
         <Tabs
             tabData={[
@@ -16,7 +16,7 @@ export default function TabsSection({ info }: { info: InfoType }) {
                 },
                 {
                     title: "relations",
-                    render: <Relations />,
+                    render: <Relations id={"21"}/>,
                 },
                 {
                     title: "characters",

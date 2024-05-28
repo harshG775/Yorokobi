@@ -15,6 +15,22 @@ export type InfoType = {
         bannerImage: string;
     };
 };
+
+export type RelatedType = {
+    Media: {
+        relations: {
+            nodes: {
+                title: {
+                    romaji: string;
+                    english: string;
+                    native: string;
+                    userPreferred: string;
+                };
+                format: string;
+            }[];
+        }
+    };
+};
 export type TrendingType = {
     Page: {
         media: {
