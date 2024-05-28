@@ -1,7 +1,7 @@
 "use client";
 import { setCookie } from "cookies-next";
 import { useState } from "react";
-import Icon from "@/components/icons/lucide";
+import Icon from "@/lib/icons/lucide";
 export default function ThemeHandler({
     currentTheme,
 }: {
@@ -10,10 +10,22 @@ export default function ThemeHandler({
     const [cTheme, setCTheme] = useState(currentTheme);
 
     const handleTheme = () => {
-        const newTheme = cTheme === "light" ? "dark" : "light";
-        document.body.setAttribute("class", newTheme);
-        setCookie("theme", newTheme, { maxAge: 30 * 24 * 60 * 60, path: "/" });
-        setCTheme(newTheme);
+        document.documentElement.setAttribute("color-scheme", cTheme === "light" ? "dark" : "light");
+        if (cTheme === "light") {
+            document.body.classList.add("dark");
+            setCookie("theme", "dark", {
+                maxAge: 30 * 24 * 60 * 60,
+                path: "/",
+            });
+            setCTheme("dark");
+        } else {
+            document.body.classList.remove("dark");
+            setCookie("theme", "light", {
+                maxAge: 30 * 24 * 60 * 60,
+                path: "/",
+            });
+            setCTheme("light");
+        }
     };
 
     return (

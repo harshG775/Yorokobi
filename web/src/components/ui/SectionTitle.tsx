@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Icon from "@/components/icons/lucide";
+import Icon from "@/lib/icons/lucide";
 
 type SectionTitleType = {
     title: string;

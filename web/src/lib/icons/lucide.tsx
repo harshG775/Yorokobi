@@ -1,7 +1,7 @@
 import React from "react";
 import { icons, LucideProps } from "lucide-react";
 
-// Using type instead of interface for IconProps
+export type LucideIconsNameTypes = keyof typeof icons
 export type IconProps = Omit<LucideProps, "ref"> & {
     name: keyof typeof icons;
 };

@@ -1,22 +1,24 @@
 import TanstackQuery from "@/lib/TanstackQuery";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import React from "react";
-import ThemeHandler from "@/components/ui/ThemeHandler";
-
-import { cookies } from "next/headers";
+import ThemeHandler from "../ui/ThemeHandler";
 
 type RootLayoutProps = {
     children: React.ReactNode;
     className?: string;
-    htmlClassName?: string;
+    theme: string;
 };
-export default function Layout({ children, ...rest }: RootLayoutProps) {
-    const { className, htmlClassName } = rest;
-    const { get } = cookies();
-    const theme = get("theme")?.value || "light";
+export default function Layout({ theme, children, ...rest }: RootLayoutProps) {
+    const { className } = rest;
     return (
-        <html lang="en" className={cn("", htmlClassName)}>
-            <body className={cn(theme, className)}>
+        <html lang="en" color-scheme={theme}>
+            <body
+                {...rest}
+                className={cn(
+                    `min-h-screen bg-background font-sans antialiased ${theme}`,
+                    className
+                )}
+            >
                 <TanstackQuery>
                     {children}
                     <ThemeHandler currentTheme={theme} />
