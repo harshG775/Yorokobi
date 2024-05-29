@@ -1,13 +1,16 @@
-import { InfoType } from "@/types/aniListTypes";
+import { RelatedType } from "@/types/aniListTypes";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Relations({ info }: { info: InfoType }) {
+export default async function Relations({
+    relations,
+}: {
+    relations: RelatedType;
+}) {
     return (
         <section className="min-h-96 container mx-auto">
-            <h3>Relations</h3>
             <ul className="max-h-96 overflow-y-scroll ">
-                {info.Media.relations.nodes.map((node: any) => {
+                {relations.nodes.map((node: any) => {
                     const { format } = node;
                     if (
                         format !== "MOVIE" &&

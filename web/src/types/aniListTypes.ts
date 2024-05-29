@@ -1,3 +1,16 @@
+export type RelatedType = {
+    nodes: {
+        title: {
+            romaji: string;
+            english: string;
+            native: string;
+            userPreferred: string;
+        };
+        format: string;
+    }[];
+};
+
+
 export type InfoType = {
     Media: {
         title: {
@@ -13,33 +26,11 @@ export type InfoType = {
         type: string;
         duration: string;
         bannerImage: string;
-        relations: {
-            nodes: {
-                title: {
-                    romaji: string;
-                    english: string;
-                    native: string;
-                    userPreferred: string;
-                };
-                format: string;
-            }[];
-        }
+        relations: RelatedType
     };
 };
 
-export type RelatedType = {
-        relations: {
-            nodes: {
-                title: {
-                    romaji: string;
-                    english: string;
-                    native: string;
-                    userPreferred: string;
-                };
-                format: string;
-            }[];
-        }
-};
+
 
 
 export type TrendingType = {
