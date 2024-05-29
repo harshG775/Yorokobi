@@ -16,7 +16,7 @@ export default function TabsSection({ info }: { info: InfoType }) {
                 },
                 {
                     title: "relations",
-                    render: <Relations id={"21"}/>,
+                    render: <Relations info={info} />,
                 },
                 {
                     title: "characters",

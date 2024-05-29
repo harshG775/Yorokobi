@@ -5,45 +5,43 @@ import { gql } from "@/utils/stringMinify";
 export async function getInfoById(id: string): Promise<InfoType> {
     const { data } = await AL({
         query: `
-        query {
-            Media(id: ${id}, type: ANIME) {
-                title {
-                    romaji
-                    english
-                    native
-                }
-                description
-                coverImage {
-                    extraLarge
-                    large
-                }
-                bannerImage
-            }
-        }
-    `,
-    });
-    return data.data
-}
-export async function getRelatedById(id: string): Promise<InfoType> {
-    const { data } = await AL({
-        query: `
-        query {
-            Media(id: ${id}, type: ANIME) {
-                relations {
-                    nodes {
-                      title {
+            query {
+                Media(id: ${id}, type: ANIME) {
+                    title {
                         romaji
                         english
                         native
-                        userPreferred
                     }
-                    format
+                    description
+                    coverImage {
+                        extraLarge
+                        large
+                    }
+                    bannerImage
+                    relations {
+                        nodes {
+                            id
+                            coverImage {
+                                extraLarge
+                                large
+                                medium
+                                color
+                            }
+                            bannerImage
+                            title {
+                                romaji
+                                english
+                                native
+                                userPreferred
+                            }
+                            format
+                        }
+                    }
                 }
             }
-        }
-    `,
+        `,
     });
-    return data.data
+    return data.data;
 }
 
 export async function getTrending(): Promise<TrendingType> {
