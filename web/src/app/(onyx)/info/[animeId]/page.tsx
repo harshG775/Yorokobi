@@ -11,8 +11,10 @@ export default async function InfoPage({
     try {
         const { animeId } = params;
         const resp = await getInfoById(animeId);
-        const { Media } = resp;
-        // console.log(Media);
+        const {
+            Media,
+            Page: { recommendations },
+        } = resp;
         return (
             <main>
                 <header>
@@ -20,12 +22,11 @@ export default async function InfoPage({
                     <div
                         style={{
                             backgroundImage: `url(${Media?.bannerImage})`,
-                            borderImage: "inset linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 1 stretch",
+                            borderImage:
+                                "inset linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 1 stretch",
                         }}
                         className="w-full h-96 bg-center bg-cover"
-                    >
-
-                    </div>
+                    ></div>
                     {/* <Image
                         className="w-full h-52 sm:h-72 object-cover bg-top"
                         src={Media?.bannerImage || Media.coverImage.extraLarge}
@@ -35,7 +36,7 @@ export default async function InfoPage({
                     /> */}
                     <div>
                         <Image
-                            src={Media?.coverImage?.large||" "}
+                            src={Media?.coverImage?.large || " "}
                             alt="poster"
                             width={240}
                             height={360}
@@ -43,11 +44,18 @@ export default async function InfoPage({
                         <h1>{Media?.title?.romaji}</h1>
                     </div>
                     <div>
-                        <Link href={`/watch/${Media.title.romaji.replace(" ", "-")}`}>Watch</Link>
+                        <Link
+                            href={`/watch/${Media.title.romaji.replace(
+                                " ",
+                                "-"
+                            )}`}
+                        >
+                            Watch
+                        </Link>
                     </div>
                 </header>
 
-                <TabsSection info={resp}/>
+                <TabsSection info={resp} />
 
                 <section>
                     {/* episodes */}
@@ -87,7 +95,19 @@ export default async function InfoPage({
                     <div>
                         <h3>Recommendations</h3>
                     </div>
-                    <ul>{/* Recommended anime carousel*/}</ul>
+                    <ul className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))]">
+                        {recommendations.map((data) => (
+                            <li key={data.media.id}>
+                                <Image
+                                    src={data.media.coverImage.extraLarge}
+                                    alt={data.media.title.english}
+                                    width={180}
+                                    height={200}
+                                />
+                                <p>{data.media.title.english}</p>
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             </main>
         );

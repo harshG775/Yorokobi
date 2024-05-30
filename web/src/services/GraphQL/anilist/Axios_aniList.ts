@@ -38,6 +38,23 @@ export async function getInfoById(id: string): Promise<InfoType> {
                         }
                     }
                 }
+                Page(page: 1, perPage: 10) {
+                    recommendations(mediaRecommendationId: 21) {
+                        media {
+                            id
+                            coverImage {
+                                large
+                                extraLarge
+                            }
+                            title {
+                                romaji
+                                english
+                                native
+                                userPreferred
+                            }
+                        }
+                    }
+                }
             }
         `,
     });

@@ -9,7 +9,21 @@ export type RelatedType = {
         format: string;
     }[];
 };
-
+export type RecommendationsType = {
+    media: {
+        id: number;
+        coverImage: {
+            large: string;
+            extraLarge: string;
+        };
+        title: {
+            romaji: string;
+            english: string;
+            native: string;
+            userPreferred: string;
+        };
+    };
+}[];
 
 export type InfoType = {
     Media: {
@@ -26,12 +40,12 @@ export type InfoType = {
         type: string;
         duration: string;
         bannerImage: string;
-        relations: RelatedType
+        relations: RelatedType;
+    };
+    Page: {
+        recommendations: RecommendationsType;
     };
 };
-
-
-
 
 export type TrendingType = {
     Page: {
