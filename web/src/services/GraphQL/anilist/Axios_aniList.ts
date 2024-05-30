@@ -16,9 +16,24 @@ export async function getInfoById(id: string): Promise<InfoType> {
                     coverImage {
                         extraLarge
                         large
+                        medium
+                        color
                     }
                     bannerImage
                     relations {
+                        edges {
+                            relationType
+                            node {
+                                id
+                                type
+                                coverImage {
+                                    extraLarge
+                                    large
+                                    medium
+                                    color
+                                }
+                            }
+                        }
                         nodes {
                             id
                             coverImage {

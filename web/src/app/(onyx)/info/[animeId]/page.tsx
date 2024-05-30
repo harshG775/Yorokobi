@@ -15,6 +15,7 @@ export default async function InfoPage({
             Media,
             Page: { recommendations },
         } = resp;
+        console.log(Media.relations.edges[0].node.coverImage);
         return (
             <main>
                 <header>
@@ -54,7 +55,26 @@ export default async function InfoPage({
                         </Link>
                     </div>
                 </header>
-
+                <ul>
+                    {Media.relations.edges.map(
+                        ({ node, relationType }) =>
+                            (relationType === "PREQUEL" ||
+                                relationType === "SEQUEL") &&
+                            node.type === "ANIME" && (
+                                <li key={node.id}>
+                                    <Link href={`/info/${node.id}`}>
+                                    {relationType}
+                                    <Image
+                                        src={node.coverImage.large}
+                                        alt="poster"
+                                        width={100}
+                                        height={100}
+                                    />
+                                    </Link>
+                                </li>
+                            )
+                    )}
+                </ul>
                 <TabsSection info={resp} />
 
                 <section>
