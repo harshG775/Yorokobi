@@ -27,7 +27,6 @@ export default async function AnimePage({
             </div>
             <div className="container grid gap-y-10 gap-x-2 lg:grid-cols-[1fr_300px]">
                 <section className="min-h-96">Comments</section>
-                <section className="min-h-96">Similar</section>
                 <section className="min-h-96">Recommended</section>
             </div>
         </main>
