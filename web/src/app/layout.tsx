@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import Layout from "@/components/layouts/RootLayout";
-import { cookies } from "next/headers";
+import Providers from "@/components/providers/Providers";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 
 const fontSans = FontSans({
     subsets: ["latin"],
@@ -10,17 +10,24 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-    title: "Onyx",
-    description: "Anime Streaming Platform",
+    title: "Next-Js App template",
+    description: "with TailwindCSS and ShadeCn theme",
 };
 
 type RootLayoutProps = Readonly<{ children: React.ReactNode }>;
 export default function RootLayout({ children }: RootLayoutProps) {
-    const { get } = cookies();
-    const theme = get("theme");
     return (
-        <Layout className={fontSans.variable} theme={theme?.value || "light"}>
-            {children}
-        </Layout>
+        <html lang="en" suppressHydrationWarning>
+            <body
+                className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased`}
+            >
+                <Providers>
+                    {children}
+                    <div className="fixed bottom-4 right-4">
+                        <ModeToggle />
+                    </div>
+                </Providers>
+            </body>
+        </html>
     );
 }

@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 const config = {
-    darkMode: ["class"],
+    darkMode: "class",
     content: [
         "./pages/**/*.{ts,tsx}",
         "./components/**/*.{ts,tsx}",
@@ -12,7 +12,7 @@ const config = {
     theme: {
         container: {
             center: true,
-            padding: "2rem",
+            padding: "0.5rem",
             screens: {
                 "2xl": "1400px",
             },
