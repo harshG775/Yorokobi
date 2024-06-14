@@ -1,5 +1,5 @@
 "use client";
-import { useGetTrending } from "@/services/GraphQL/aniList";
+import { useGetTrending } from "@/services/GraphQL/queries";
 
 import Image from "next/image";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAvailableServers, getInfo, getRecentEpisodes, getTopAiring } from "./gogoAnime/api";
+import { getAvailableServers, getInfo, getRecentEpisodes, getTopAiring } from "./api";
 
 
 

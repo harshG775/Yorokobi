@@ -2,7 +2,7 @@
 
 import SectionTitle from "@/components/ui/SectionTitle";
 import Card from "@/components/ui/cards/Card";
-import { useGetRecentEpisodes } from "@/services/queries";
+import { useGetRecentEpisodes } from "@/services/gogoAnime/queries";
 
 export default function RecentEpisodes() {
     const { data, status } = useGetRecentEpisodes();
