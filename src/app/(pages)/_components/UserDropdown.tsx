@@ -7,7 +7,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AL } from "@/lib/axios/api.anilist";
+import { AL_Token } from "@/lib/axios/api.anilist";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -30,8 +30,8 @@ export default function UserDropdown({
     const { data, status } = useQuery({
         queryKey: ["userProfile"],
         queryFn: () => {
-            return AL({
-                query: `
+            return AL_Token(
+                `
                     {
                         Viewer {
                             id
@@ -43,16 +43,20 @@ export default function UserDropdown({
                             bannerImage
                         }
                     }
-                `,
-                accessToken: accessToken,
-            });
+                `
+            );
         },
     });
     if (status === "pending")
         return (
             <div className="rounded-full w-8 h-8 overflow-hidden bg-foreground/50"></div>
         );
-    if (status === "error") return <div className="rounded-full w-8 h-8 overflow-hidden bg-red-600/50">Error</div>;
+    if (status === "error")
+        return (
+            <div className="rounded-full w-8 h-8 overflow-hidden bg-red-600/50">
+                Error
+            </div>
+        );
 
     const user = data?.data?.data?.Viewer;
     // TODO: if accessToken is revoked, re-authenticate user

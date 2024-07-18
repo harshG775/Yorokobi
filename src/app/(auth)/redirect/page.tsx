@@ -9,13 +9,17 @@ export default function RedirectPage() {
         const hash = window.location.hash;
         const params = new URLSearchParams(hash.substring(1));
         const accessToken = params.get("access_token");
-        if (accessToken) {
-            setAccessToken(accessToken);
-            router.replace("/");
-        }
-        if (!accessToken) {
-            router.replace("/");
-        }
+        console.log(accessToken);
+        const fetchMe = async () => {
+            if (accessToken) {
+                await setAccessToken(accessToken);
+                router.replace("/");
+            }
+            if (!accessToken) {
+                router.replace("/");
+            }
+        };
+        fetchMe();
     }, []);
     return (
         <div className="min-h-screen grid place-content-center">Logging...</div>
