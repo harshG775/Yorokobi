@@ -1,9 +1,9 @@
 import axios from "axios";
-// import { serverEnv } from "../env/server.env";
-// const { AL_BASEURL_QL } = serverEnv;
+import { clientEnv } from "../env/client.env";
+const { NEXT_PUBLIC_AL_BASEURL_QL } = clientEnv;
 
 const axiosAL = axios.create({
-    baseURL: "https://graphql.anilist.co",
+    baseURL: NEXT_PUBLIC_AL_BASEURL_QL,
     headers: {
         accept: "application/json",
         "content-type": "application/json",
@@ -15,7 +15,8 @@ type ALProps = {
 };
 
 export const AL = ({ query, accessToken }: ALProps) => {
-    return axiosAL.post("",
+    return axiosAL.post(
+        "",
         {
             query: query,
         },
