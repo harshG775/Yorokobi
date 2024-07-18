@@ -20,7 +20,7 @@ export default async function Header() {
             {accessToken ? (
                 <UserDropdown accessToken={accessToken} />
             ) : (
-                <Button variant={"link"}>
+                <Button variant={"link"} asChild>
                     <a
                         href={`https://anilist.co/api/v2/oauth/authorize?client_id=${client_id}&response_type=token`}
                     >
