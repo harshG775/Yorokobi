@@ -1,5 +1,5 @@
 "use client";
-import { deleteToken } from "@/app/(auth)/actions";
+import { deleteAccessToken } from "@/app/actions/authActions";
 import { Button } from "@/components/ui/button";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function LogoutButton() {
     const router = useRouter();
     const handleLogout = async () => {
-        await deleteToken("access_token");
+        await deleteAccessToken("access_token");
         router.refresh();
     };
     return (

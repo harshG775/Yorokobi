@@ -11,7 +11,7 @@ import { AL } from "@/lib/axios/api.anilist";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { deleteAccessToken } from "@/app/actions";
+import { deleteAccessToken } from "@/app/actions/authActions";
 import { Button } from "@/components/ui/button";
 
 type UserDropdownProps = {

@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import UserDropdown from "./_components/user/UserDropdown";
 import Link from "next/link";
-import { getAccessToken } from "../actions";
+import { getAccessToken } from "../actions/authActions";
 import { Button } from "@/components/ui/button";
 import { serverEnv } from "@/lib/env/server.env";
 

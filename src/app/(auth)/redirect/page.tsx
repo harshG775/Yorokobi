@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import { setToken } from "../actions";
 import { useRouter } from "next/navigation";
+import { setAccessToken } from "@/app/actions/authActions";
 
 export default function RedirectPage() {
     const router = useRouter();
@@ -10,12 +10,7 @@ export default function RedirectPage() {
         const params = new URLSearchParams(hash.substring(1));
         const accessToken = params.get("access_token");
         if (accessToken) {
-            setToken({
-                name: "access_token",
-                value: accessToken,
-                httpOnly: true,
-                path: "/",
-            });
+            setAccessToken(accessToken);
             router.replace("/");
         }
         if (!accessToken) {
